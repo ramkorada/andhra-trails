@@ -1,0 +1,297 @@
+import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { ArrowLeft, MapPin, Star, Heart, Clock, IndianRupee, Car, Hotel, UtensilsCrossed, Landmark, Wine, Navigation, Calendar, ExternalLink } from "lucide-react";
+import { destinations } from "@/data/destinations";
+import { destinationDetails } from "@/data/destinationDetails";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import ReviewSection from "@/components/ReviewSection";
+import Navbar from "@/components/Navbar";
+
+const typeIcons: Record<string, any> = {
+  hotel: Hotel,
+  restaurant: UtensilsCrossed,
+  pub: Wine,
+  attraction: Landmark,
+  transport: Car,
+};
+
+const typeLabels: Record<string, string> = {
+  hotel: "Hotels",
+  restaurant: "Restaurants",
+  pub: "Cafés & Pubs",
+  attraction: "Attractions",
+  transport: "Transport",
+};
+
+const DestinationDetail = () => {
+  const { id } = useParams<{ id: string }>();
+  const dest = destinations.find((d) => d.id === id);
+  const detail = id ? destinationDetails[id] : null;
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const [isFav, setIsFav] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => {}
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user && id) {
+      supabase.from("favorites").select("id").eq("user_id", user.id).eq("destination_id", id).then(({ data }) => {
+        setIsFav(!!data?.length);
+      });
+    }
+  }, [user, id]);
+
+  const toggleFav = async () => {
+    if (!user) { toast({ title: "Sign in to save favorites", variant: "destructive" }); return; }
+    if (isFav) {
+      await supabase.from("favorites").delete().eq("user_id", user.id).eq("destination_id", id!);
+      setIsFav(false);
+      toast({ title: "Removed from favorites" });
+    } else {
+      await supabase.from("favorites").insert({ user_id: user.id, destination_id: id! });
+      setIsFav(true);
+      toast({ title: "Added to favorites ❤️" });
+    }
+  };
+
+  if (!dest || !detail) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-xl text-foreground mb-4">Destination not found</p>
+          <Link to="/destinations" className="text-primary font-semibold hover:underline">← Back to Destinations</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const tabs = [
+    { id: "overview", label: "Overview" },
+    { id: "nearby", label: "Nearby Places" },
+    { id: "travel", label: "Travel & Costs" },
+    { id: "reviews", label: "Reviews" },
+  ];
+
+  const nearbyGroups = Object.entries(
+    detail.nearbyPlaces.reduce((acc, p) => {
+      (acc[p.type] = acc[p.type] || []).push(p);
+      return acc;
+    }, {} as Record<string, typeof detail.nearbyPlaces>)
+  );
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+
+      {/* Hero */}
+      <div className="relative h-[50vh] min-h-[350px]">
+        <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover" />
+        <div className="hero-gradient-overlay absolute inset-0" />
+        <div className="relative z-10 h-full flex flex-col justify-end container mx-auto px-4 pb-8">
+          <Link to="/destinations" className="inline-flex items-center gap-1 text-primary-foreground/70 text-sm mb-4 hover:text-primary-foreground transition-colors">
+            <ArrowLeft className="h-4 w-4" /> Back to Destinations
+          </Link>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <span className={`${dest.category === "Eco" ? "category-eco" : dest.category === "Cultural" ? "category-cultural" : "category-coastal"} px-3 py-1 rounded-full text-xs font-semibold mb-3 inline-block`}>
+                {dest.category}
+              </span>
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground">{dest.name}</h1>
+              <div className="flex items-center gap-3 mt-2 text-primary-foreground/80">
+                <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> {dest.district}</span>
+                <span className="flex items-center gap-1"><Star className="h-4 w-4 fill-accent text-accent" /> {dest.rating} ({dest.reviewCount.toLocaleString()})</span>
+              </div>
+            </div>
+            <button onClick={toggleFav} className="mt-2 bg-primary-foreground/20 backdrop-blur-sm p-3 rounded-full hover:bg-primary-foreground/30 transition-colors">
+              <Heart className={`h-6 w-6 ${isFav ? "fill-red-500 text-red-500" : "text-primary-foreground"}`} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="sticky top-16 z-30 bg-background border-b border-border">
+        <div className="container mx-auto px-4 flex gap-1 overflow-x-auto">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
+                activeTab === tab.id ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 py-8">
+        {activeTab === "overview" && (
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="bg-card border border-border rounded-xl p-6">
+                <h2 className="font-display text-2xl font-bold text-foreground mb-3">About {dest.name}</h2>
+                <p className="text-muted-foreground leading-relaxed">{dest.description}</p>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-6">
+                <h2 className="font-display text-2xl font-bold text-foreground mb-3">History</h2>
+                <p className="text-muted-foreground leading-relaxed">{detail.history}</p>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-6">
+                <h2 className="font-display text-2xl font-bold text-foreground mb-3">Culture & Traditions</h2>
+                <p className="text-muted-foreground leading-relaxed">{detail.culture}</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="bg-card border border-border rounded-xl p-5">
+                <h3 className="font-display text-lg font-bold text-foreground mb-3">Quick Info</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center gap-2"><Calendar className="h-4 w-4 text-primary" /><span className="text-muted-foreground">Best time: {detail.travelInfo.bestTimeToVisit}</span></div>
+                  <div className="flex items-center gap-2"><Clock className="h-4 w-4 text-primary" /><span className="text-muted-foreground">Duration: {detail.travelInfo.idealDuration}</span></div>
+                  <div className="flex items-center gap-2"><IndianRupee className="h-4 w-4 text-primary" /><span className="text-muted-foreground">Budget: {detail.travelInfo.estimatedDailyCost.budget}/day</span></div>
+                </div>
+              </div>
+              <a href={dest.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors w-full">
+                <Navigation className="h-4 w-4" /> View on Google Maps
+              </a>
+              {userLocation && (
+                <a
+                  href={`https://www.google.com/maps/dir/${userLocation.lat},${userLocation.lng}/${encodeURIComponent(dest.name + " " + dest.district + " Andhra Pradesh")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-secondary text-secondary-foreground px-4 py-3 rounded-xl font-semibold hover:bg-secondary/90 transition-colors w-full"
+                >
+                  <Car className="h-4 w-4" /> Get Directions from My Location
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "nearby" && (
+          <div className="space-y-8">
+            {nearbyGroups.map(([type, places]) => {
+              const Icon = typeIcons[type] || Landmark;
+              return (
+                <div key={type}>
+                  <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                    <Icon className="h-5 w-5 text-primary" /> {typeLabels[type] || type}
+                  </h2>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {places.map((place, i) => (
+                      <div key={i} className="bg-card border border-border rounded-xl p-4 card-hover">
+                        <h3 className="font-semibold text-foreground mb-1">{place.name}</h3>
+                        <div className="space-y-1 text-sm text-muted-foreground">
+                          <p>📍 {place.distance} away</p>
+                          <p>💰 {place.priceRange}</p>
+                          <div className="flex items-center gap-1">
+                            <Star className="h-3.5 w-3.5 text-accent fill-accent" />
+                            <span>{place.rating}</span>
+                          </div>
+                        </div>
+                        {place.bookingUrl && (
+                          <a href={place.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-primary font-semibold mt-2 hover:underline">
+                            Book Now <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {activeTab === "travel" && (
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Travel from cities */}
+            <div className="bg-card border border-border rounded-xl p-6">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Navigation className="h-5 w-5 text-primary" /> How to Get There
+              </h2>
+              <div className="space-y-4">
+                {[
+                  { city: "Hyderabad", info: detail.travelInfo.fromHyderabad },
+                  { city: "Visakhapatnam", info: detail.travelInfo.fromVisakhapatnam },
+                  { city: "Vijayawada", info: detail.travelInfo.fromVijayawada },
+                ].map(({ city, info }) => (
+                  <div key={city} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                    <div>
+                      <p className="font-semibold text-foreground text-sm">From {city}</p>
+                      <p className="text-xs text-muted-foreground">{info.mode}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-foreground text-sm">{info.distance}</p>
+                      <p className="text-xs text-muted-foreground">{info.time}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Cost Estimates */}
+            <div className="bg-card border border-border rounded-xl p-6">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <IndianRupee className="h-5 w-5 text-primary" /> Estimated Daily Cost
+              </h2>
+              <div className="space-y-3">
+                {[
+                  { label: "Budget", range: detail.travelInfo.estimatedDailyCost.budget, color: "bg-eco" },
+                  { label: "Mid-Range", range: detail.travelInfo.estimatedDailyCost.mid, color: "bg-coastal" },
+                  { label: "Luxury", range: detail.travelInfo.estimatedDailyCost.luxury, color: "bg-cultural" },
+                ].map(({ label, range, color }) => (
+                  <div key={label} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className={`w-3 h-3 rounded-full ${color}`} />
+                      <span className="font-medium text-foreground text-sm">{label}</span>
+                    </div>
+                    <span className="font-semibold text-foreground text-sm">{range}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+                <p className="text-sm text-muted-foreground"><Calendar className="h-4 w-4 inline mr-1 text-primary" /> Ideal duration: <strong className="text-foreground">{detail.travelInfo.idealDuration}</strong></p>
+              </div>
+            </div>
+
+            {/* Cab Services */}
+            <div className="bg-card border border-border rounded-xl p-6 lg:col-span-2">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Car className="h-5 w-5 text-primary" /> Cab Services
+              </h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {detail.cabServices.map((cab, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                    <div>
+                      <p className="font-semibold text-foreground text-sm">{cab.name}</p>
+                      <p className="text-xs text-muted-foreground">{cab.contact}</p>
+                    </div>
+                    <span className="text-sm font-semibold text-primary">{cab.pricePerKm}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "reviews" && <ReviewSection destinationId={dest.id} />}
+      </div>
+    </div>
+  );
+};
+
+export default DestinationDetail;
