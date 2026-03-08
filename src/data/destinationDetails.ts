@@ -323,8 +323,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Vijayawada Cabs", pricePerKm: "₹10/km", contact: "+91 98765 99999" },
       { name: "AP Travels", pricePerKm: "₹11/km", contact: "+91 87654 00000" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Amaravati Archaeological Museum", type: "tourism_office", phone: "+91 08645 222255", description: "Museum timings & guided tour bookings" },
+      { name: "Vijayawada Tourism Office", type: "tourism_office", phone: "+91 0866 2578402", description: "Regional tourism info for Amaravati & surrounds" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "gandikota": {
     id: "gandikota",
     history: "Gandikota, known as the 'Grand Canyon of India', is a village in Kadapa district featuring a spectacular gorge formed by the Pennar River cutting through the Erramala hills. The Gandikota Fort, built by the Kalyani Chalukyas in the 12th century, sits dramatically on the edge of a 300-foot deep gorge. The fort changed hands between the Chalukyas, Vijayanagara Empire, and the Qutb Shahis over centuries. Inside the fort are the Madhava Raya Temple, the Ranganatha Temple, and a Jamia Masjid — showcasing the region's multi-cultural history.",
     culture: "Gandikota is a hidden gem that has recently gained attention as India's answer to the Grand Canyon. The fort walls span nearly 5 km and contain remnants of a once-thriving medieval town. The Mylavaram Dam nearby adds to the scenic beauty. The region's Rayalaseema culture is known for its warrior traditions, spicy cuisine, and vibrant folk arts like Burra Katha.",
