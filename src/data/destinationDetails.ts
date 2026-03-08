@@ -438,8 +438,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Madanapalle Cabs", pricePerKm: "₹10/km", contact: "+91 98765 66666" },
       { name: "Tirupati Outstation", pricePerKm: "₹12/km", contact: "+91 87654 77777" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "APTDC Horsley Hills", type: "tourism_office", phone: "+91 08571 256325", description: "Haritha Hill Resort bookings & info" },
+      { name: "Forest Dept (Chittoor)", type: "tourism_office", phone: "+91 08572 222225", description: "Trekking permits & nature park info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "rishikonda": {
     id: "rishikonda",
     history: "Rishikonda Beach, located 8 km from Visakhapatnam city, has been a popular destination since the 1960s when the APTDC developed it as a beach resort. The name derives from 'Rishi' (sage) and 'Konda' (hill), referring to the sages who once meditated on the rocky hills surrounding the beach. Today it's known as the 'Jewel of the East Coast' and is one of India's best beaches for water sports.",
     culture: "Rishikonda is at the heart of Vizag's cosmopolitan beach culture. The beach hosts annual surfing competitions, sand sculpture festivals, and beach volleyball tournaments. Local seafood cuisine, particularly the Andhra-style fish curry, is a major cultural draw.",
