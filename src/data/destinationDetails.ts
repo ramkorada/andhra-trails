@@ -247,8 +247,15 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "TTD Transport", pricePerKm: "₹12/km", contact: "+91 87654 66666" },
       { name: "Ola / Uber", pricePerKm: "₹9-13/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "TTD Helpline", type: "helpline", phone: "1800 425 4141", description: "24/7 toll-free TTD helpline for darshan & seva queries" },
+      { name: "TTD Call Center", type: "temple", phone: "+91 0877 223 3333", description: "Darshan tickets, accommodation & donation queries", website: "https://www.tirumala.org" },
+      { name: "TTD WhatsApp Guide", type: "local_guide", phone: "+91 93993 99399", description: "WhatsApp support for pilgrimage planning" },
+      { name: "TTD Donation Queries", type: "temple", phone: "155257", description: "Toll-free for donation-related queries" },
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "lepakshi": {
     id: "lepakshi",
     history: "Lepakshi, a small historical village in Anantapur district, houses the famous Veerabhadra Temple built in 1530 AD by Virupanna, a governor under the Vijayanagara Empire. The name 'Lepakshi' translates to 'Rise, Bird' — a reference to the legend of Lord Rama asking the wounded bird Jatayu to rise. The temple is an architectural masterpiece with the largest monolithic Nandi (bull) in India, measuring 27 feet long and 15 feet high. The famous 'Hanging Pillar' that doesn't fully touch the ground remains an engineering mystery.",
     culture: "The temple walls feature some of the finest examples of Vijayanagara mural paintings depicting scenes from the Ramayana, Mahabharata, and Puranas. The intricate ceiling paintings, executed in the 'fresco secco' technique, cover over 1,000 sq ft. The 70 stone pillars are carved with dancing figures, musicians, and mythological scenes.",
