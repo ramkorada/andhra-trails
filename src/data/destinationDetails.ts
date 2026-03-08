@@ -126,8 +126,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Rajahmundry Cabs", pricePerKm: "₹11/km", contact: "+91 98765 11111" },
       { name: "Godavari Tours", pricePerKm: "₹13/km", contact: "+91 87654 22222" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Godavari Cruise Bookings", type: "tour_operator", phone: "+91 93937 93937", description: "Official Papikondalu boat cruise bookings" },
+      { name: "Rajahmundry Tourism Office", type: "tourism_office", phone: "+91 0883 2478855", description: "Local tourism information & guides" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "borra-caves": {
     id: "borra-caves",
     history: "Borra Caves, discovered in 1807 by British geologist William King, are the largest caves in India. These karstic limestone caves are estimated to be 150 million years old, formed by the Gosthani River flowing through the limestone area. The caves hold religious significance for local tribes who worship the Shivalinga-shaped stalagmite formation inside. Archaeological surveys have found Stone Age tools, suggesting human habitation dating back millions of years.",
     culture: "The caves are sacred to the local Valmiki tribal community who consider them the abode of Lord Shiva. The unique stalactite and stalagmite formations resemble a Shiva Linga, a cow's udder, human brain, and other shapes that have inspired local legends. The tribal communities hold annual rituals at the cave entrance. The nearby villages showcase traditional Dhimsa dance performances for visitors.",
