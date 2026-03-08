@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ReviewSection from "@/components/ReviewSection";
 import Navbar from "@/components/Navbar";
+import WeatherWidget from "@/components/WeatherWidget";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const typeIcons: Record<string, any> = {
@@ -200,7 +201,7 @@ const DestinationDetail = () => {
               </a>
               {userLocation && (
                 <a
-                  href={`https://www.google.com/maps/dir/${userLocation.lat},${userLocation.lng}/${encodeURIComponent(dest.name + " " + dest.district + " Andhra Pradesh")}`}
+                  href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${encodeURIComponent(dest.name + " Andhra Pradesh")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-secondary text-secondary-foreground px-4 py-3 rounded-xl font-semibold hover:bg-secondary/90 transition-colors w-full"
@@ -208,6 +209,7 @@ const DestinationDetail = () => {
                   <Car className="h-4 w-4" /> Get Directions from My Location
                 </a>
               )}
+              <WeatherWidget destinationId={dest.id} />
             </div>
           </div>
         )}
