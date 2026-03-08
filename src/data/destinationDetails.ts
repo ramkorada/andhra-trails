@@ -25,6 +25,14 @@ export interface GuideInfo {
   whatToCarry: string[];
 }
 
+export interface GuideContact {
+  name: string;
+  type: "helpline" | "tour_operator" | "local_guide" | "emergency" | "temple" | "tourism_office";
+  phone: string;
+  description: string;
+  website?: string;
+}
+
 export interface DestinationDetail {
   id: string;
   history: string;
@@ -33,6 +41,7 @@ export interface DestinationDetail {
   travelInfo: TravelInfo;
   cabServices: { name: string; pricePerKm: string; contact: string }[];
   guideInfo: GuideInfo;
+  guideContacts: GuideContact[];
 }
 
 const mapSearch = (query: string) =>
