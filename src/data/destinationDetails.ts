@@ -285,8 +285,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Hindupur Cabs", pricePerKm: "₹10/km", contact: "+91 98765 77777" },
       { name: "Hyderabad Outstation", pricePerKm: "₹12/km", contact: "+91 87654 88888" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Lepakshi Temple Guide", type: "local_guide", phone: "+91 94402 12345", description: "Certified temple guide — history & architecture tours" },
+      { name: "APTDC Lepakshi", type: "tourism_office", phone: "+91 08559 272375", description: "Haritha Hotel bookings & local info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "amaravati": {
     id: "amaravati",
     history: "Amaravati, located on the banks of the Krishna River in Guntur district, was the capital of the ancient Satavahana dynasty (2nd century BCE). It was a major center of Buddhism, housing the Great Stupa (Mahachaitya), one of the largest Buddhist stupas ever built, rivaling Sanchi and Borobudur. The stupa was adorned with elaborate limestone carvings depicting scenes from Buddha's life.",
     culture: "Amaravati represents a unique blend of Buddhist and Hindu heritage. The Amaravati School of Art, characterized by its dynamic narrative relief sculptures, influenced Buddhist art across Southeast Asia. The archaeological museum houses priceless artifacts from the stupa site.",
