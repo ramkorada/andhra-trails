@@ -372,6 +372,7 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
+  "konaseema": {
     id: "konaseema",
     history: "Konaseema, the 'God's Own Creation', is a lush deltaic region where the Godavari River splits into multiple tributaries before emptying into the Bay of Bengal. The region has been a rice bowl and coconut paradise for centuries. Ancient references in Telugu literature describe Konaseema as 'Andhra's Kerala'. The region was integral to the Vengi Chalukya and Eastern Chalukya kingdoms. The Antarvedi Temple, where the Godavari meets the sea, has been a pilgrimage site for over 1,000 years.",
     culture: "Konaseema's culture revolves around the Godavari — fishing, boat festivals, and riverside temples define daily life. The region produces India's finest coconut oil and is famous for its unique 'Konaseema' cuisine featuring prawn curries, crab preparations, and sweet pongal. The annual boat race festival (Teppotsavam) at Antarvedi is a grand spectacle. Traditional Telugu drama (Harikatha, Burra Katha) thrives here.",
