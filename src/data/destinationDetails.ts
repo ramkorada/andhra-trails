@@ -479,8 +479,14 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Vizag Yellow Cabs", pricePerKm: "₹10/km", contact: "+91 98765 12345" },
       { name: "Ola / Uber", pricePerKm: "₹8-12/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "APTDC Vizag Office", type: "tourism_office", phone: "+91 0891 2788820", description: "Vizag region tourism info & resort bookings" },
+      { name: "Vizag Water Sports", type: "tour_operator", phone: "+91 90000 45678", description: "Surfing, jet skiing & beach activities at Rishikonda" },
+      { name: "Coast Guard (Vizag)", type: "emergency", phone: "+91 0891 2739256", description: "Maritime rescue & sea emergency" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "yarada": {
     id: "yarada",
     history: "Yarada Beach is one of the most secluded and pristine beaches near Visakhapatnam, surrounded by hills on three sides — making it naturally sheltered and scenic. The area was historically part of the naval and military zone. The beach remained relatively undiscovered until the early 2000s when eco-tourism initiatives opened it to visitors.",
     culture: "Yarada represents the unspoiled, raw beauty of Andhra's coastline. The beach is popular among adventure enthusiasts for camping, trekking the surrounding Dolphin's Nose hill, and sunrise watching. Local fishing communities around Yarada still practice traditional net-fishing methods.",
