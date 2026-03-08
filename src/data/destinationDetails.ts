@@ -1,3 +1,4 @@
+// Destination details data
 export interface NearbyPlace {
   name: string;
   type: "restaurant" | "hotel" | "pub" | "attraction" | "transport";
