@@ -204,8 +204,14 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Srisailam Local Autos", pricePerKm: "₹15/km", contact: "Available at bus stand" },
       { name: "Ola / Uber (from Hyderabad)", pricePerKm: "₹10-14/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Srisailam Devasthanam", type: "temple", phone: "+91 08524 287760", description: "Temple darshan, accommodation & pooja bookings", website: "https://www.srisailadevasthanam.org" },
+      { name: "Srisailam Tourism (AR Holidays)", type: "tour_operator", phone: "+91 90596 64435", description: "Srisailam tour packages & local guides", website: "https://srisailamtourism.com" },
+      { name: "APTDC Srisailam", type: "tourism_office", phone: "+91 08524 287425", description: "Haritha Hotel bookings & tourist info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "tirupati": {
     id: "tirupati",
     history: "Tirupati is home to the Sri Venkateswara Temple (Tirumala), one of the richest and most visited religious sites in the world. The temple's history dates back over 2,000 years, with references in Tamil Sangam literature. Built in the Dravidian architectural style, the main deity Lord Venkateswara (Balaji) attracts over 75,000 pilgrims daily. The temple was patronized by various dynasties including the Pallavas, Cholas, and the Vijayanagara Empire.",
     culture: "Tirupati is a spiritual epicenter of Hinduism. The head-tonsuring tradition (offering hair to the deity) is practiced by millions annually. The temple's Brahmotsavam festival, celebrated for 9 days, features grand processions with the deity on different vahanams (vehicles). The prasadam (sacred food), especially the Tirupati Laddu, is world-famous and has a GI tag.",
