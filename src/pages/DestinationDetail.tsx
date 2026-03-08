@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowLeft, MapPin, Star, Heart, Clock, IndianRupee, Car, Hotel, UtensilsCrossed, Landmark, Wine, Navigation, Calendar, ExternalLink, CheckCircle, AlertTriangle, Backpack, Users, Map } from "lucide-react";
+import { ArrowLeft, MapPin, Star, Heart, Clock, IndianRupee, Car, Hotel, UtensilsCrossed, Landmark, Wine, Navigation, Calendar, ExternalLink, CheckCircle, AlertTriangle, Backpack, Users, Map, Phone, Globe, Shield } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { destinations } from "@/data/destinations";
 import { destinationDetails } from "@/data/destinationDetails";
