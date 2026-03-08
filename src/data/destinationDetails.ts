@@ -517,5 +517,11 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Vizag Yellow Cabs", pricePerKm: "₹10/km", contact: "+91 98765 12345" },
       { name: "Ola / Uber", pricePerKm: "₹8-12/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "APTDC Vizag Office", type: "tourism_office", phone: "+91 0891 2788820", description: "Vizag region tourism info & resort bookings" },
+      { name: "Coast Guard (Vizag)", type: "emergency", phone: "+91 0891 2739256", description: "Maritime rescue & sea emergency" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
 };
