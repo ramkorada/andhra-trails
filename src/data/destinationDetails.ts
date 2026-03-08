@@ -133,6 +133,7 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
+  "borra-caves": {
     id: "borra-caves",
     history: "Borra Caves, discovered in 1807 by British geologist William King, are the largest caves in India. These karstic limestone caves are estimated to be 150 million years old, formed by the Gosthani River flowing through the limestone area. The caves hold religious significance for local tribes who worship the Shivalinga-shaped stalagmite formation inside. Archaeological surveys have found Stone Age tools, suggesting human habitation dating back millions of years.",
     culture: "The caves are sacred to the local Valmiki tribal community who consider them the abode of Lord Shiva. The unique stalactite and stalagmite formations resemble a Shiva Linga, a cow's udder, human brain, and other shapes that have inspired local legends. The tribal communities hold annual rituals at the cave entrance. The nearby villages showcase traditional Dhimsa dance performances for visitors.",
@@ -170,6 +171,7 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
+  "srisailam": {
     id: "srisailam",
     history: "Srisailam is one of the twelve Jyotirlingas and one of the eighteen Maha Shakti Peethas, making it one of the most sacred sites in Hinduism. The Mallikarjuna Swamy Temple dates back to the 2nd century CE and was expanded by the Vijayanagara kings. The Srisailam Dam on the Krishna River, built in 1981, is one of India's largest hydroelectric projects. The surrounding Nallamala Hills are home to the Nagarjunasagar-Srisailam Tiger Reserve, India's largest tiger reserve.",
     culture: "Srisailam blends deep spiritual significance with breathtaking natural beauty. The annual Maha Shivaratri festival attracts lakhs of devotees. The temple's Brahmotsavam features grand processions. The Nallamala forests are home to the Chenchu tribe, one of India's oldest tribal communities. The Patala Ganga cable car offers unique views of the Krishna River gorge.",
@@ -494,6 +496,7 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
+  "yarada": {
     id: "yarada",
     history: "Yarada Beach is one of the most secluded and pristine beaches near Visakhapatnam, surrounded by hills on three sides — making it naturally sheltered and scenic. The area was historically part of the naval and military zone. The beach remained relatively undiscovered until the early 2000s when eco-tourism initiatives opened it to visitors.",
     culture: "Yarada represents the unspoiled, raw beauty of Andhra's coastline. The beach is popular among adventure enthusiasts for camping, trekking the surrounding Dolphin's Nose hill, and sunrise watching. Local fishing communities around Yarada still practice traditional net-fishing methods.",
