@@ -1,13 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowLeft, MapPin, Star, Heart, Clock, IndianRupee, Car, Hotel, UtensilsCrossed, Landmark, Wine, Navigation, Calendar, ExternalLink } from "lucide-react";
+import { ArrowLeft, MapPin, Star, Heart, Clock, IndianRupee, Car, Hotel, UtensilsCrossed, Landmark, Wine, Navigation, Calendar, ExternalLink, CheckCircle, AlertTriangle, Backpack, Users, Map } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import { destinations } from "@/data/destinations";
 import { destinationDetails } from "@/data/destinationDetails";
+import { destinationImages } from "@/data/destinationImages";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ReviewSection from "@/components/ReviewSection";
 import Navbar from "@/components/Navbar";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const typeIcons: Record<string, any> = {
   hotel: Hotel,
@@ -29,6 +32,7 @@ const DestinationDetail = () => {
   const { id } = useParams<{ id: string }>();
   const dest = destinations.find((d) => d.id === id);
   const detail = id ? destinationDetails[id] : null;
+  const images = id ? destinationImages[id] || [] : [];
   const { user } = useAuth();
   const { toast } = useToast();
   const [isFav, setIsFav] = useState(false);
@@ -78,6 +82,7 @@ const DestinationDetail = () => {
 
   const tabs = [
     { id: "overview", label: "Overview" },
+    { id: "guide", label: "Travel Guide" },
     { id: "nearby", label: "Nearby Places" },
     { id: "travel", label: "Travel & Costs" },
     { id: "reviews", label: "Reviews" },
@@ -94,11 +99,29 @@ const DestinationDetail = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero */}
+      {/* Hero Image Carousel */}
       <div className="relative h-[50vh] min-h-[350px]">
-        <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="hero-gradient-overlay absolute inset-0" />
-        <div className="relative z-10 h-full flex flex-col justify-end container mx-auto px-4 pb-8">
+        {images.length > 1 ? (
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
+            className="absolute inset-0 h-full"
+          >
+            <CarouselContent className="h-full -ml-0">
+              {images.map((img, i) => (
+                <CarouselItem key={i} className="h-full pl-0">
+                  <img src={img} alt={`${dest.name} - ${i + 1}`} className="w-full h-[50vh] min-h-[350px] object-cover" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4 z-20 bg-background/50 backdrop-blur-sm border-0 hover:bg-background/70" />
+            <CarouselNext className="right-4 z-20 bg-background/50 backdrop-blur-sm border-0 hover:bg-background/70" />
+          </Carousel>
+        ) : (
+          <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover" />
+        )}
+        <div className="hero-gradient-overlay absolute inset-0 z-10 pointer-events-none" />
+        <div className="relative z-20 h-full flex flex-col justify-end container mx-auto px-4 pb-8">
           <Link to="/destinations" className="inline-flex items-center gap-1 text-primary-foreground/70 text-sm mb-4 hover:text-primary-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" /> Back to Destinations
           </Link>
@@ -164,6 +187,14 @@ const DestinationDetail = () => {
                   <div className="flex items-center gap-2"><IndianRupee className="h-4 w-4 text-primary" /><span className="text-muted-foreground">Budget: {detail.travelInfo.estimatedDailyCost.budget}/day</span></div>
                 </div>
               </div>
+              <div className="bg-card border border-border rounded-xl p-5">
+                <h3 className="font-display text-lg font-bold text-foreground mb-3 flex items-center gap-2"><Users className="h-5 w-5 text-primary" /> Best For</h3>
+                <div className="flex flex-wrap gap-2">
+                  {detail.guideInfo.bestFor.map((tag) => (
+                    <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">{tag}</span>
+                  ))}
+                </div>
+              </div>
               <a href={dest.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors w-full">
                 <Navigation className="h-4 w-4" /> View on Google Maps
               </a>
@@ -177,6 +208,67 @@ const DestinationDetail = () => {
                   <Car className="h-4 w-4" /> Get Directions from My Location
                 </a>
               )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "guide" && (
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Must Visit */}
+            <div className="bg-card border border-border rounded-xl p-6">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Star className="h-5 w-5 text-accent fill-accent" /> Must-Visit Spots
+              </h2>
+              <ul className="space-y-2">
+                {detail.guideInfo.mustVisitSpots.map((spot, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle className="h-4 w-4 text-eco mt-0.5 flex-shrink-0" />
+                    {spot}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Local Tips */}
+            <div className="bg-card border border-border rounded-xl p-6">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-primary" /> Local Tips
+              </h2>
+              <ul className="space-y-2">
+                {detail.guideInfo.localTips.map((tip, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="text-primary font-bold flex-shrink-0">💡</span>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Safety Tips */}
+            <div className="bg-card border border-border rounded-xl p-6">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-accent" /> Safety Tips
+              </h2>
+              <ul className="space-y-2">
+                {detail.guideInfo.safetyTips.map((tip, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <AlertTriangle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* What to Carry */}
+            <div className="bg-card border border-border rounded-xl p-6">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Backpack className="h-5 w-5 text-primary" /> What to Carry
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {detail.guideInfo.whatToCarry.map((item, i) => (
+                  <span key={i} className="px-3 py-1.5 bg-muted text-foreground text-sm rounded-lg">🎒 {item}</span>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -202,11 +294,18 @@ const DestinationDetail = () => {
                             <span>{place.rating}</span>
                           </div>
                         </div>
-                        {place.bookingUrl && (
-                          <a href={place.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-primary font-semibold mt-2 hover:underline">
-                            Book Now <ExternalLink className="h-3 w-3" />
-                          </a>
-                        )}
+                        <div className="flex items-center gap-2 mt-3 flex-wrap">
+                          {place.bookingUrl && (
+                            <a href={place.bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-primary font-semibold hover:underline">
+                              Book Now <ExternalLink className="h-3 w-3" />
+                            </a>
+                          )}
+                          {place.mapUrl && (
+                            <a href={place.mapUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-eco font-semibold hover:underline">
+                              <Map className="h-3 w-3" /> View on Map
+                            </a>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -218,7 +317,6 @@ const DestinationDetail = () => {
 
         {activeTab === "travel" && (
           <div className="grid lg:grid-cols-2 gap-6">
-            {/* Travel from cities */}
             <div className="bg-card border border-border rounded-xl p-6">
               <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                 <Navigation className="h-5 w-5 text-primary" /> How to Get There
@@ -243,7 +341,6 @@ const DestinationDetail = () => {
               </div>
             </div>
 
-            {/* Cost Estimates */}
             <div className="bg-card border border-border rounded-xl p-6">
               <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                 <IndianRupee className="h-5 w-5 text-primary" /> Estimated Daily Cost
@@ -268,7 +365,6 @@ const DestinationDetail = () => {
               </div>
             </div>
 
-            {/* Cab Services */}
             <div className="bg-card border border-border rounded-xl p-6 lg:col-span-2">
               <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                 <Car className="h-5 w-5 text-primary" /> Cab Services

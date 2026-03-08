@@ -11,6 +11,7 @@ const Navbar = () => {
   const links = [
     { to: "/", label: "Home" },
     { to: "/destinations", label: "Destinations" },
+    { to: "/favorites", label: "Favorites" },
     { to: "/eco-awareness", label: "Eco Awareness" },
   ];
 
