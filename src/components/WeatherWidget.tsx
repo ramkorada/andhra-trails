@@ -64,6 +64,13 @@ const destinationCoords: Record<string, { lat: number; lng: number }> = {
   "horsley-hills": { lat: 13.6603, lng: 78.3997 },
   "rishikonda": { lat: 17.7869, lng: 83.3836 },
   "yarada": { lat: 17.6533, lng: 83.2742 },
+  "nagarjuna-sagar": { lat: 16.5756, lng: 79.3122 },
+  "ahobilam": { lat: 15.4833, lng: 78.7333 },
+  "mantralayam": { lat: 15.6667, lng: 77.3833 },
+  "talakona": { lat: 13.7167, lng: 79.1333 },
+  "ethipothala": { lat: 16.5333, lng: 79.2833 },
+  "pulicat-lake": { lat: 13.4167, lng: 80.3167 },
+  "lambasingi": { lat: 17.9500, lng: 82.6000 },
 };
 
 interface WeatherWidgetProps {
