@@ -99,10 +99,10 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-primary-foreground py-12 px-4">
+      <footer className="bg-card border-t border-border py-12 px-4">
         <div className="container mx-auto text-center">
-          <p className="font-display text-lg font-bold mb-2">AP Tourism</p>
-          <p className="text-primary-foreground/60 text-sm">© 2026 Smart Digital Platform for Eco & Cultural Tourism in Andhra Pradesh</p>
+          <p className="font-display text-lg font-bold text-foreground mb-2">AP Tourism</p>
+          <p className="text-muted-foreground text-sm">© 2026 Smart Digital Platform for Eco & Cultural Tourism in Andhra Pradesh</p>
         </div>
       </footer>
     </div>
