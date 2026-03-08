@@ -163,8 +163,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Vizag Cabs", pricePerKm: "₹12/km", contact: "+91 98765 43210" },
       { name: "Araku Tours", pricePerKm: "₹14/km", contact: "+91 87654 33333" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Araku Tourism (covers Borra)", type: "tour_operator", phone: "+91 94923 33659", description: "Combined Araku-Borra tour packages", website: "https://arakutourism.com" },
+      { name: "Forest Dept (Araku Range)", type: "tourism_office", phone: "+91 08936 249226", description: "Permissions for treks & forest areas" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
-  "srisailam": {
     id: "srisailam",
     history: "Srisailam is one of the twelve Jyotirlingas and one of the eighteen Maha Shakti Peethas, making it one of the most sacred sites in Hinduism. The Mallikarjuna Swamy Temple dates back to the 2nd century CE and was expanded by the Vijayanagara kings. The Srisailam Dam on the Krishna River, built in 1981, is one of India's largest hydroelectric projects. The surrounding Nallamala Hills are home to the Nagarjunasagar-Srisailam Tiger Reserve, India's largest tiger reserve.",
     culture: "Srisailam blends deep spiritual significance with breathtaking natural beauty. The annual Maha Shivaratri festival attracts lakhs of devotees. The temple's Brahmotsavam features grand processions. The Nallamala forests are home to the Chenchu tribe, one of India's oldest tribal communities. The Patala Ganga cable car offers unique views of the Krishna River gorge.",
