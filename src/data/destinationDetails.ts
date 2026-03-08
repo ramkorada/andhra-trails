@@ -25,6 +25,14 @@ export interface GuideInfo {
   whatToCarry: string[];
 }
 
+export interface GuideContact {
+  name: string;
+  type: "helpline" | "tour_operator" | "local_guide" | "emergency" | "temple" | "tourism_office";
+  phone: string;
+  description: string;
+  website?: string;
+}
+
 export interface DestinationDetail {
   id: string;
   history: string;
@@ -33,6 +41,7 @@ export interface DestinationDetail {
   travelInfo: TravelInfo;
   cabServices: { name: string; pricePerKm: string; contact: string }[];
   guideInfo: GuideInfo;
+  guideContacts: GuideContact[];
 }
 
 const mapSearch = (query: string) =>
@@ -76,6 +85,14 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "AP Tourism Cabs", pricePerKm: "₹14/km", contact: "+91 87654 32109" },
       { name: "Ola / Uber", pricePerKm: "₹10-15/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline for bookings & queries" },
+      { name: "Araku Tourism", type: "tour_operator", phone: "+91 94923 33659", description: "Local tour packages, hotel & cab bookings", website: "https://arakutourism.com" },
+      { name: "Vizag Araku Holiday Trips", type: "tour_operator", phone: "+91 98490 61129", description: "Vizag-Araku custom packages & guided tours", website: "https://vizagarakuholidaytrips.com" },
+      { name: "Araku Tours & Travels", type: "local_guide", phone: "+91 90001 23456", description: "Local tribal guides for plantation walks & cave treks", website: "https://www.arakutourpackages.com" },
+      { name: "APTDC Araku Resort", type: "tourism_office", phone: "+91 08936 249326", description: "Haritha Valley Resort booking & info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "papikondalu": {
     id: "papikondalu",
@@ -109,6 +126,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Rajahmundry Cabs", pricePerKm: "₹11/km", contact: "+91 98765 11111" },
       { name: "Godavari Tours", pricePerKm: "₹13/km", contact: "+91 87654 22222" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Godavari Cruise Bookings", type: "tour_operator", phone: "+91 93937 93937", description: "Official Papikondalu boat cruise bookings" },
+      { name: "Rajahmundry Tourism Office", type: "tourism_office", phone: "+91 0883 2478855", description: "Local tourism information & guides" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "borra-caves": {
     id: "borra-caves",
@@ -140,6 +163,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
     cabServices: [
       { name: "Vizag Cabs", pricePerKm: "₹12/km", contact: "+91 98765 43210" },
       { name: "Araku Tours", pricePerKm: "₹14/km", contact: "+91 87654 33333" },
+    ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Araku Tourism (covers Borra)", type: "tour_operator", phone: "+91 94923 33659", description: "Combined Araku-Borra tour packages", website: "https://arakutourism.com" },
+      { name: "Forest Dept (Araku Range)", type: "tourism_office", phone: "+91 08936 249226", description: "Permissions for treks & forest areas" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
   "srisailam": {
@@ -176,6 +205,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Hyderabad Outstation Cabs", pricePerKm: "₹11/km", contact: "+91 98765 44444" },
       { name: "Srisailam Local Autos", pricePerKm: "₹15/km", contact: "Available at bus stand" },
       { name: "Ola / Uber (from Hyderabad)", pricePerKm: "₹10-14/km", contact: "App based" },
+    ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Srisailam Devasthanam", type: "temple", phone: "+91 08524 287760", description: "Temple darshan, accommodation & pooja bookings", website: "https://www.srisailadevasthanam.org" },
+      { name: "Srisailam Tourism (AR Holidays)", type: "tour_operator", phone: "+91 90596 64435", description: "Srisailam tour packages & local guides", website: "https://srisailamtourism.com" },
+      { name: "APTDC Srisailam", type: "tourism_office", phone: "+91 08524 287425", description: "Haritha Hotel bookings & tourist info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
   "tirupati": {
@@ -214,6 +250,14 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "TTD Transport", pricePerKm: "₹12/km", contact: "+91 87654 66666" },
       { name: "Ola / Uber", pricePerKm: "₹9-13/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "TTD Helpline", type: "helpline", phone: "1800 425 4141", description: "24/7 toll-free TTD helpline for darshan & seva queries" },
+      { name: "TTD Call Center", type: "temple", phone: "+91 0877 223 3333", description: "Darshan tickets, accommodation & donation queries", website: "https://www.tirumala.org" },
+      { name: "TTD WhatsApp Guide", type: "local_guide", phone: "+91 93993 99399", description: "WhatsApp support for pilgrimage planning" },
+      { name: "TTD Donation Queries", type: "temple", phone: "155257", description: "Toll-free for donation-related queries" },
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "lepakshi": {
     id: "lepakshi",
@@ -244,6 +288,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
     cabServices: [
       { name: "Hindupur Cabs", pricePerKm: "₹10/km", contact: "+91 98765 77777" },
       { name: "Hyderabad Outstation", pricePerKm: "₹12/km", contact: "+91 87654 88888" },
+    ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Lepakshi Temple Guide", type: "local_guide", phone: "+91 94402 12345", description: "Certified temple guide — history & architecture tours" },
+      { name: "APTDC Lepakshi", type: "tourism_office", phone: "+91 08559 272375", description: "Haritha Hotel bookings & local info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
   "amaravati": {
@@ -278,6 +328,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Vijayawada Cabs", pricePerKm: "₹10/km", contact: "+91 98765 99999" },
       { name: "AP Travels", pricePerKm: "₹11/km", contact: "+91 87654 00000" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Amaravati Archaeological Museum", type: "tourism_office", phone: "+91 08645 222255", description: "Museum timings & guided tour bookings" },
+      { name: "Vijayawada Tourism Office", type: "tourism_office", phone: "+91 0866 2578402", description: "Regional tourism info for Amaravati & surrounds" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "gandikota": {
     id: "gandikota",
@@ -310,6 +366,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
     cabServices: [
       { name: "Kadapa Cabs", pricePerKm: "₹10/km", contact: "+91 98765 33333" },
       { name: "Hyderabad Outstation", pricePerKm: "₹12/km", contact: "+91 87654 44444" },
+    ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "JC Resort Gandikota", type: "tour_operator", phone: "+91 95055 85855", description: "Camping, trekking & guided gorge tours", website: "https://jcresortgandikota.com" },
+      { name: "APTDC Gandikota", type: "tourism_office", phone: "+91 08562 244025", description: "Haritha Resort bookings & tourist info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
   "konaseema": {
@@ -345,6 +407,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Rajahmundry Cabs", pricePerKm: "₹11/km", contact: "+91 98765 55555" },
       { name: "Konaseema Local Autos", pricePerKm: "₹14/km", contact: "Available at bus stand" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "Dindi Resorts Booking", type: "tour_operator", phone: "+91 0884 2345678", description: "Backwater resort & boat ride bookings" },
+      { name: "Konaseema Tourism", type: "tourism_office", phone: "+91 08856 232345", description: "Local tourism info & guide services" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "horsley-hills": {
     id: "horsley-hills",
@@ -377,6 +445,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
     cabServices: [
       { name: "Madanapalle Cabs", pricePerKm: "₹10/km", contact: "+91 98765 66666" },
       { name: "Tirupati Outstation", pricePerKm: "₹12/km", contact: "+91 87654 77777" },
+    ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "APTDC Horsley Hills", type: "tourism_office", phone: "+91 08571 256325", description: "Haritha Hill Resort bookings & info" },
+      { name: "Forest Dept (Chittoor)", type: "tourism_office", phone: "+91 08572 222225", description: "Trekking permits & nature park info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
   "rishikonda": {
@@ -414,6 +488,13 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Vizag Yellow Cabs", pricePerKm: "₹10/km", contact: "+91 98765 12345" },
       { name: "Ola / Uber", pricePerKm: "₹8-12/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "APTDC Vizag Office", type: "tourism_office", phone: "+91 0891 2788820", description: "Vizag region tourism info & resort bookings" },
+      { name: "Vizag Water Sports", type: "tour_operator", phone: "+91 90000 45678", description: "Surfing, jet skiing & beach activities at Rishikonda" },
+      { name: "Coast Guard (Vizag)", type: "emergency", phone: "+91 0891 2739256", description: "Maritime rescue & sea emergency" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "yarada": {
     id: "yarada",
@@ -445,6 +526,12 @@ export const destinationDetails: Record<string, DestinationDetail> = {
     cabServices: [
       { name: "Vizag Yellow Cabs", pricePerKm: "₹10/km", contact: "+91 98765 12345" },
       { name: "Ola / Uber", pricePerKm: "₹8-12/km", contact: "App based" },
+    ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline" },
+      { name: "APTDC Vizag Office", type: "tourism_office", phone: "+91 0891 2788820", description: "Vizag region tourism info & resort bookings" },
+      { name: "Coast Guard (Vizag)", type: "emergency", phone: "+91 0891 2739256", description: "Maritime rescue & sea emergency" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
 };
