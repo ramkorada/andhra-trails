@@ -272,6 +272,57 @@ const DestinationDetail = () => {
                 ))}
               </div>
             </div>
+
+            {/* Travel Guide Contacts */}
+            <div className="bg-card border border-border rounded-xl p-6 lg:col-span-2">
+              <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Phone className="h-5 w-5 text-primary" /> Travel Guide & Helpline Numbers
+              </h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {detail.guideContacts.map((contact, i) => {
+                  const typeColors: Record<string, string> = {
+                    helpline: "bg-eco/10 text-eco",
+                    tour_operator: "bg-coastal/10 text-coastal",
+                    local_guide: "bg-cultural/10 text-cultural",
+                    emergency: "bg-destructive/10 text-destructive",
+                    temple: "bg-accent/10 text-accent",
+                    tourism_office: "bg-primary/10 text-primary",
+                  };
+                  const typeLabelsMap: Record<string, string> = {
+                    helpline: "Helpline",
+                    tour_operator: "Tour Operator",
+                    local_guide: "Local Guide",
+                    emergency: "Emergency",
+                    temple: "Temple",
+                    tourism_office: "Tourism Office",
+                  };
+                  return (
+                    <div key={i} className="flex flex-col gap-2 p-3 bg-muted/50 rounded-lg">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <p className="font-semibold text-foreground text-sm">{contact.name}</p>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${typeColors[contact.type] || "bg-muted text-muted-foreground"}`}>
+                            {typeLabelsMap[contact.type] || contact.type}
+                          </span>
+                        </div>
+                        {contact.type === "emergency" && <Shield className="h-4 w-4 text-destructive flex-shrink-0" />}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{contact.description}</p>
+                      <div className="flex items-center gap-2 flex-wrap mt-auto">
+                        <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-1 text-xs text-primary font-semibold hover:underline">
+                          <Phone className="h-3 w-3" /> {contact.phone}
+                        </a>
+                        {contact.website && (
+                          <a href={contact.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-coastal font-semibold hover:underline">
+                            <Globe className="h-3 w-3" /> Website
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         )}
 
