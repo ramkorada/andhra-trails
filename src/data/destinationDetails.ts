@@ -85,6 +85,14 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "AP Tourism Cabs", pricePerKm: "₹14/km", contact: "+91 87654 32109" },
       { name: "Ola / Uber", pricePerKm: "₹10-15/km", contact: "App based" },
     ],
+    guideContacts: [
+      { name: "AP Tourism Helpline", type: "helpline", phone: "1800 425 4545", description: "24/7 toll-free AP Tourism helpline for bookings & queries" },
+      { name: "Araku Tourism", type: "tour_operator", phone: "+91 94923 33659", description: "Local tour packages, hotel & cab bookings", website: "https://arakutourism.com" },
+      { name: "Vizag Araku Holiday Trips", type: "tour_operator", phone: "+91 98490 61129", description: "Vizag-Araku custom packages & guided tours", website: "https://vizagarakuholidaytrips.com" },
+      { name: "Araku Tours & Travels", type: "local_guide", phone: "+91 90001 23456", description: "Local tribal guides for plantation walks & cave treks", website: "https://www.arakutourpackages.com" },
+      { name: "APTDC Araku Resort", type: "tourism_office", phone: "+91 08936 249326", description: "Haritha Valley Resort booking & info" },
+      { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
+    ],
   },
   "papikondalu": {
     id: "papikondalu",
