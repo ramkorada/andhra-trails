@@ -1,16 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
-import { MapPin, Menu, X, User, LogOut } from "lucide-react";
+import { MapPin, Menu, X, User, LogOut, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/hooks/useTheme";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { user, signOut } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   const links = [
     { to: "/", label: "Home" },
     { to: "/destinations", label: "Destinations" },
+    { to: "/trip-planner", label: "Trip Planner" },
     { to: "/favorites", label: "Favorites" },
     { to: "/eco-awareness", label: "Eco Awareness" },
   ];
@@ -24,7 +27,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <Link
               key={link.to}
@@ -36,6 +39,13 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          </button>
           {user ? (
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground">{user.email?.split("@")[0]}</span>
@@ -51,9 +61,18 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-foreground">
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+          </button>
+          <button onClick={() => setIsOpen(!isOpen)} className="text-foreground">
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
