@@ -135,6 +135,10 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
   }
 
+  .dark .text-gradient {
+    @apply from-[hsl(160,45%,55%)] to-[hsl(195,60%,55%)];
+  }
+
   .section-padding {
     @apply py-16 md:py-24 px-4 md:px-8;
   }
