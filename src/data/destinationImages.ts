@@ -15,6 +15,14 @@ import rishikonda from "@/assets/rishikonda.jpg";
 import rishikonda2 from "@/assets/rishikonda-2.jpg";
 import yarada from "@/assets/yarada.jpg";
 import yarada2 from "@/assets/yarada-2.jpg";
+import srisailam from "@/assets/srisailam.jpg";
+import srisailam2 from "@/assets/srisailam-2.jpg";
+import konaseema from "@/assets/konaseema.jpg";
+import konaseema2 from "@/assets/konaseema-2.jpg";
+import horsleyHills from "@/assets/horsley-hills.jpg";
+import horsleyHills2 from "@/assets/horsley-hills-2.jpg";
+import gandikota from "@/assets/gandikota.jpg";
+import gandikota2 from "@/assets/gandikota-2.jpg";
 
 export const destinationImages: Record<string, string[]> = {
   "araku-valley": [arakuValley, arakuValley2, arakuValley3],
@@ -25,4 +33,8 @@ export const destinationImages: Record<string, string[]> = {
   "amaravati": [amaravati, amaravati2],
   "rishikonda": [rishikonda, rishikonda2],
   "yarada": [yarada, yarada2],
+  "srisailam": [srisailam, srisailam2],
+  "konaseema": [konaseema, konaseema2],
+  "horsley-hills": [horsleyHills, horsleyHills2],
+  "gandikota": [gandikota, gandikota2],
 };
