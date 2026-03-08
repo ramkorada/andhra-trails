@@ -294,6 +294,7 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
+  "amaravati": {
     id: "amaravati",
     history: "Amaravati, located on the banks of the Krishna River in Guntur district, was the capital of the ancient Satavahana dynasty (2nd century BCE). It was a major center of Buddhism, housing the Great Stupa (Mahachaitya), one of the largest Buddhist stupas ever built, rivaling Sanchi and Borobudur. The stupa was adorned with elaborate limestone carvings depicting scenes from Buddha's life.",
     culture: "Amaravati represents a unique blend of Buddhist and Hindu heritage. The Amaravati School of Art, characterized by its dynamic narrative relief sculptures, influenced Buddhist art across Southeast Asia. The archaeological museum houses priceless artifacts from the stupa site.",
