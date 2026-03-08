@@ -9,6 +9,7 @@ import Destinations from "./pages/Destinations";
 import DestinationDetail from "./pages/DestinationDetail";
 import EcoAwareness from "./pages/EcoAwareness";
 import Auth from "./pages/Auth";
+import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 import Chatbot from "./components/Chatbot";
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/destination/:id" element={<DestinationDetail />} />
             <Route path="/eco-awareness" element={<EcoAwareness />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Chatbot />
