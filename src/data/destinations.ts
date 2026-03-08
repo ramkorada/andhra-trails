@@ -1,15 +1,22 @@
-import arakuValley from "@/assets/araku-valley.jpg";
-import papikondalu from "@/assets/papikondalu.jpg";
-import borraCaves from "@/assets/borra-caves.jpg";
-import tirupati from "@/assets/tirupati.jpg";
-import lepakshi from "@/assets/lepakshi.jpg";
-import amaravati from "@/assets/amaravati.jpg";
-import rishikonda from "@/assets/rishikonda.jpg";
-import yarada from "@/assets/yarada.jpg";
-import srisailam from "@/assets/srisailam.jpg";
-import konaseema from "@/assets/konaseema.jpg";
-import horsleyHills from "@/assets/horsley-hills.jpg";
-import gandikota from "@/assets/gandikota.jpg";
+import arakuValley from "@/assets/araku-valley-new.jpg";
+import papikondalu from "@/assets/papikondalu-new.jpg";
+import borraCaves from "@/assets/borra-caves-new.jpg";
+import tirupati from "@/assets/tirupati-new.jpg";
+import lepakshi from "@/assets/lepakshi-new.jpg";
+import amaravati from "@/assets/amaravati-new.jpg";
+import rishikonda from "@/assets/rishikonda-new.jpg";
+import yarada from "@/assets/yarada-new.jpg";
+import srisailam from "@/assets/srisailam-new.jpg";
+import konaseema from "@/assets/konaseema-new.jpg";
+import horsleyHills from "@/assets/horsley-hills-new.jpg";
+import gandikota from "@/assets/gandikota-new.jpg";
+import nagarjunaSagar from "@/assets/nagarjuna-sagar.jpg";
+import ahobilam from "@/assets/ahobilam.jpg";
+import mantralayam from "@/assets/mantralayam.jpg";
+import talakona from "@/assets/talakona.jpg";
+import ethipothala from "@/assets/ethipothala.jpg";
+import pulicatLake from "@/assets/pulicat-lake.jpg";
+import lambasingi from "@/assets/lambasingi.jpg";
 
 export type Category = "Eco" | "Cultural" | "Coastal";
 
@@ -157,5 +164,82 @@ export const destinations: Destination[] = [
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Yarada+Beach+Visakhapatnam",
     rating: 4.4,
     reviewCount: 1890,
+  },
+  {
+    id: "nagarjuna-sagar",
+    name: "Nagarjuna Sagar",
+    description: "One of the world's largest masonry dams with an ancient Buddhist site, Nagarjunakonda island museum, and scenic reservoir views.",
+    category: "Cultural",
+    district: "Palnadu",
+    image: nagarjunaSagar,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Nagarjuna+Sagar+Dam+Andhra+Pradesh",
+    rating: 4.5,
+    reviewCount: 3200,
+  },
+  {
+    id: "ahobilam",
+    name: "Ahobilam",
+    description: "A sacred Narasimha pilgrimage with nine temples nestled in the rugged Nallamala Hills, known for challenging treks and divine caves.",
+    category: "Cultural",
+    district: "Nandyal",
+    image: ahobilam,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Ahobilam+Temple+Nandyal+Andhra+Pradesh",
+    rating: 4.6,
+    reviewCount: 2450,
+  },
+  {
+    id: "mantralayam",
+    name: "Mantralayam",
+    description: "A revered pilgrimage town on the Tungabhadra River, home to the Brindavana of Sri Raghavendra Swami, attracting millions annually.",
+    category: "Cultural",
+    district: "Kurnool",
+    image: mantralayam,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Mantralayam+Temple+Kurnool+Andhra+Pradesh",
+    rating: 4.7,
+    reviewCount: 5600,
+  },
+  {
+    id: "talakona",
+    name: "Talakona Waterfalls",
+    description: "The highest waterfall in Andhra Pradesh at 270 feet, surrounded by the Sri Venkateswara National Park's dense forest and rare wildlife.",
+    category: "Eco",
+    district: "Tirupati",
+    image: talakona,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Talakona+Waterfalls+Tirupati+Andhra+Pradesh",
+    rating: 4.4,
+    reviewCount: 1950,
+  },
+  {
+    id: "ethipothala",
+    name: "Ethipothala Falls",
+    description: "A stunning 70-foot waterfall formed by three streams near Nagarjuna Sagar, with a crocodile breeding center and lush surroundings.",
+    category: "Eco",
+    district: "Palnadu",
+    image: ethipothala,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Ethipothala+Falls+Andhra+Pradesh",
+    rating: 4.3,
+    reviewCount: 1670,
+  },
+  {
+    id: "pulicat-lake",
+    name: "Pulicat Lake",
+    description: "India's second largest brackish water lagoon, a birdwatcher's haven with flamingos, pelicans, and the historic Dutch-era Pulicat town.",
+    category: "Coastal",
+    district: "Tirupati",
+    image: pulicatLake,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Pulicat+Lake+Bird+Sanctuary+Andhra+Pradesh",
+    rating: 4.3,
+    reviewCount: 1340,
+  },
+  {
+    id: "lambasingi",
+    name: "Lambasingi",
+    description: "The 'Kashmir of Andhra Pradesh' — a tiny hamlet at 1000m altitude known for sub-zero temperatures, mist-covered valleys, and pepper farms.",
+    category: "Eco",
+    district: "Visakhapatnam",
+    image: lambasingi,
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Lambasingi+Visakhapatnam+Andhra+Pradesh",
+    rating: 4.5,
+    reviewCount: 2870,
   },
 ];
