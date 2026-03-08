@@ -412,6 +412,7 @@ export const destinationDetails: Record<string, DestinationDetail> = {
       { name: "Police / Emergency", type: "emergency", phone: "112", description: "All-India emergency helpline" },
     ],
   },
+  "horsley-hills": {
     id: "horsley-hills",
     history: "Horsley Hills (Yenugu Mallama Konda) is a serene hill station in Chittoor district at an altitude of 1265m. Named after W.D. Horsley, the British collector who discovered its potential in 1870, it served as a summer retreat during the colonial era. The hills are part of the southernmost extension of the Eastern Ghats. A 1500-year-old Sampangi tree (the 'Tree of Life'), believed to be the oldest tree in South India, still stands here. The area's unique ecology supports rare species of flora and fauna.",
     culture: "Horsley Hills represents Rayalaseema's natural heritage. The hill is sacred to local Sugali (Lambadi) tribes. The region's culture blends Rayalaseema warrior traditions with pastoral tranquility. The nearby Madanapalle town is famous for Jiddu Krishnamurti's birthplace. Local handicrafts include Kalamkari prints and Kondapalli toys from the broader Andhra tradition.",
